@@ -1,32 +1,66 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-    // --- מסד נתונים של תוכנית הלימודים ---
+    // --- מסד נתונים מלא של תוכנית הלימודים ---
     const curriculum = {
         torah: {
-            a: { "בראשית": 12, "נח": 6, "לך-לך": 5, "וירא": 5, "חיי שרה": 3, "תולדות": 3, "ויצא": 4, "וישלח": 4, "וישב": 4, "מקץ": 4, "ויגש": 4, "ויחי": 4 },
-            b: { "שמות": 6, "וארא": 4, "בא": 3, "בשלח": 5, "יתרו": 3, "משפטים": 3, "תרומה": 3, "תצוה": 3, "כי תשא": 4, "ויקהל": 3, "פקודי": 3, "ויקרא": 5, "צו": 7, "שמיני": 4 },
-            c: { "תזריע": 2, "מצורע": 2, "אחרי מות": 2, "קדושים": 2, "אמור": 5, "בהר": 2, "בחוקותי": 2, "במדבר": 4, "נשא": 7, "בהעלותך": 4, "שלח": 4, "קרח": 3, "חקת": 3, "בלק": 3, "פנחס": 5 },
-            d: { "מטות": 4, "מסעי": 3, "דברים": 3, "ואתחנן": 4, "עקב": 4, "ראה": 5, "שופטים": 6, "כי תצא": 5, "כי תבוא": 4, "ניצבים": 2, "וילך": 1, "האזינו": 1, "וזאת הברכה": 1 },
+            a: {"בראשית":6, "נח":4, "לך-לך":5, "וירא":5, "חיי שרה":2, "תולדות":3, "ויצא":3, "וישלח":5, "וישב":4, "מקץ":4, "ויגש":4, "ויחי":4},
+            b: {"שמות":6, "וארא":4, "בא":3, "בשלח":5, "יתרו":3, "משפטים":3, "תרומה":3, "תצוה":3, "כי תשא":4, "ויקהל-פקודי":5, "ויקרא":5, "צו":2, "שמיני":4},
+            c: {"תזריע-מצורע":4, "אחרי-קדושים":4, "אמור":5, "בהר-בחוקותי":3, "במדבר":4, "נשא":7, "בהעלותך":4, "שלח":3, "קרח":3, "חקת":3, "בלק":3, "פנחס":4},
+            d: {"מטות-מסעי":6, "דברים":3, "ואתחנן":4, "עקב":3, "ראה":5, "שופטים":5, "כי תצא":5, "כי תבוא":4, "ניצבים-וילך":3, "האזינו":1, "וזאת הברכה":1},
             e: { "בראשית (עיון)": 50 },
             f: { "שמות (עיון)": 40 }
         },
         navi: {
-            b: ['יהושע'], c: ['שופטים', 'שמואל א'], d: ['שמואל ב', 'מלכים א'], e: ['מלכים ב'],
+            b: ['יהושע'],
+            c: ['שופטים', 'שמואל א'],
+            d: ['שמואל ב', 'מלכים א'],
+            e: ['מלכים ב'],
+            f: ['חזרה כללית', 'ירמיהו (פרקי נחמה)', 'יחזקאל (פרקי נחמה)']
         },
         mishna: {
-            'zeraim': ['ברכות', 'פאה'], 'moed': ['שבת', 'פסחים', 'יומא', 'סוכה'], 'nashim': ['יבמות', 'כתובות', 'סוטה'], 'nezikin': ['בבא קמא', 'בבא מציעא', 'בבא בתרא', 'סנהדרין']
+            c: ['ברכות', 'פאה'],
+            d: ['שבת', 'פסחים'],
+            e: ['יומא', 'סוכה'],
+            f: ['בבא קמא', 'בבא מציעא']
         },
         halacha: {
-            b: ['תפילה', 'ברכות', 'שבת (הכנות וקידוש)'], c: ['חגי תשרי', 'כשרות', 'כיבוד הורים'], d: ['שבת (הבדלה)', 'לשון הרע', 'צדקה וחסד'],
+            a: ['ברכות השחר והנהנין', 'נטילת ידיים', 'תפילה בסיסית'],
+            b: ['דיני בית הכנסת', 'ציצית ותפילין', 'הכנות לשבת'],
+            c: ['קידוש והבדלה', 'חגי תשרי', 'חנוכה ופורים'],
+            d: ['כשרות המטבח', 'כיבוד הורים', 'בין אדם לחברו'],
+            e: ['דיני שבת (איסורי מלאכה)', 'לשון הרע', 'תרומות ומעשרות (בסיסי)'],
+            f: ['מצוות התלויות בארץ', 'הלכות תפילה (הרחבה)', 'גמילות חסדים']
         },
         math: {
-            a: ['מספרים עד 20', 'חיבור וחיסור עד 10'], b: ['חיבור וחיסור עד 100', 'יסודות הכפל', 'מדידות אורך'], c: ['לוח הכפל', 'בעיות מילוליות', 'גיאומטריה (מצולעים)'],
+            a: ['מספרים עד 20', 'חיבור וחיסור עד 10', 'בעיות מילוליות פשוטות'],
+            b: ['מספרים עד 100', 'חיבור וחיסור במאונך', 'יסודות הכפל והחילוק'],
+            c: ['לוח הכפל בעל פה', 'בעיות מילוליות רב-שלביות', 'גיאומטריה: מצולעים וקווים'],
+            d: ['מספרים עד 10,000', 'שברים פשוטים', 'מדידות: אורך, משקל, זמן'],
+            e: ['פעולות בשברים', 'מספרים עשרוניים', 'שטח והיקף'],
+            f: ['אחוזים', 'יחס ופרופורציה', 'חקירת נתונים וגרפים']
         },
         hebrew: {
-            b: ['זיהוי פעלים ושמות עצם', 'סימני פיסוק', 'כתיבת סיפור קצר'], c: ['שורשים ומשפחות מילים', 'זכר ונקבה', 'יחיד ורבים'],
+            a:['הכרת אותיות וניקוד', 'כתיבת מילים', 'קריאת משפטים קצרים'],
+            b: ['קריאה שוטפת', 'זיהוי שם עצם ופועל', 'סימני פיסוק'],
+            c: ['שורשים ומשפחות מילים', 'זכר-נקבה, יחיד-רבים', 'כתיבת סיפור קצר'],
+            d: ['הבנת הנקרא: רעיון מרכזי', 'בניינים (פעל, פיעל)', 'כתיבת מכתב'],
+            e: ['אמצעים אמנותיים בטקסט', 'זמנים (עבר, הווה, עתיד)', 'כתיבת טיעון'],
+            f: ['ניתוח טקסטים מורכבים', 'לשון המקורות', 'כתיבת חיבור ועבודה']
         },
-        science: { c: ['מחזור המים בטבע', 'מערכת השמש', 'מצבי צבירה'], },
-        english: { c: ['ABC and basic sounds', 'Numbers 1-20', 'Colors and animals'], }
+        science: {
+            a: ['עונות השנה', 'חושים', 'חי וצומח בסביבה'],
+            b: ['מחזור חיי הצמח', 'בעלי חיים בסביבתם', 'תכונות חומרים'],
+            c: ['מחזור המים בטבע', 'מערכת השמש', 'מצבי צבירה'],
+            d: ['שרשרת המזון', 'חשמל בסיסי', 'גוף האדם: שלד ושרירים'],
+            e: ['מערכות אקולוגיות', 'כוחות ותנועה', 'גוף האדם: עיכול ונשימה'],
+            f: ['אטומים ומולקולות (בסיסי)', 'פוטוסינתזה', 'בריאות והיגיינה']
+        },
+        english: {
+            c: ['ABC and basic sounds', 'Numbers 1-20', 'Colors and Animals'],
+            d: ['Reading simple sentences', 'My Family & My House vocabulary', 'Present Simple (I/You/We)'],
+            e: ['Reading short paragraphs', 'Asking questions (What/Where/Who)', 'Present Simple (He/She/It)'],
+            f: ['Writing a short personal story', 'Past Simple', 'Expanding vocabulary (Food, Hobbies, Places)']
+        }
     };
 
     // --- איתור רכיבים עיקריים ---
@@ -45,69 +79,44 @@ document.addEventListener('DOMContentLoaded', function() {
         const subject = subjectSelect.value;
         const topicMode = document.querySelector('input[name="topic_mode"]:checked').value;
 
-        structuredOptionsContainer.innerHTML = ''; // ניקוי האזור הדינמי בכל שינוי
+        structuredOptionsContainer.innerHTML = ''; 
         customTopicSection.style.display = 'none';
 
         if (topicMode === 'custom') {
             customTopicSection.style.display = 'block';
-            // עדכון הדוגמאות בנושא מותאם אישית
-            switch (subject) {
-                case 'torah': topicInput.placeholder = "לדוגמה: בריאת העולם"; break;
-                case 'navi': topicInput.placeholder = "לדוגמה: דוד וגוליית"; break;
-                case 'math': topicInput.placeholder = "לדוגמה: לוח הכפל"; break;
-                default: topicInput.placeholder = "אנא בחרו כיתה ומקצוע תחילה";
+            if(subject && curriculum[subject] && curriculum[subject][grade] && Array.isArray(curriculum[subject][grade])) {
+                 topicInput.placeholder = `לדוגמה: ${curriculum[subject][grade][0]}`;
+            } else if (subject === 'torah') {
+                 topicInput.placeholder = "לדוגמה: בריאת העולם";
+            } else {
+                 topicInput.placeholder = "אנא בחרו כיתה ומקצוע תחילה";
             }
         } else if (topicMode === 'structured' && grade && subject) {
-            // לוגיקה ליצירת תפריטים דינמיים
-            createDynamicDropdowns(grade, subject);
+            let html = '';
+            if (subject === 'torah' && curriculum.torah[grade]) {
+                const parshiot = Object.keys(curriculum.torah[grade]);
+                html = `<div><label for="parasha-select">פרשה:</label><select name="parasha" id="parasha-select">`;
+                parshiot.forEach(p => html += `<option value="${p}">${p}</option>`);
+                html += `</select></div><div><label for="perek-select">פרק:</label><select name="perek" id="perek-select"></select></div>`;
+            } else if (curriculum[subject] && curriculum[subject][grade]) {
+                const topics = curriculum[subject][grade];
+                html = `<div><label for="topic-select">נושא:</label><select name="topic" id="topic-select">`;
+                topics.forEach(t => html += `<option value="${t}">${t}</option>`);
+                html += `</select></div>`;
+            }
+            structuredOptionsContainer.innerHTML = html;
+            
+            const parashaSelect = document.getElementById('parasha-select');
+            if (parashaSelect) {
+                parashaSelect.addEventListener('change', () => updatePerekOptions(grade, parashaSelect));
+                updatePerekOptions(grade, parashaSelect);
+            }
         }
     }
 
-    function createDynamicDropdowns(grade, subject) {
-        // לוגיקה לתורה
-        if (subject === 'torah' && curriculum.torah[grade]) {
-            const parshiot = Object.keys(curriculum.torah[grade]);
-            const parashaLabel = document.createElement('label');
-            parashaLabel.htmlFor = 'parasha-select';
-            parashaLabel.textContent = 'פרשה:';
-            const parashaSelect = document.createElement('select');
-            parashaSelect.id = 'parasha-select';
-            parashaSelect.name = 'parasha';
-            parashaSelect.innerHTML = '<option value="">-- בחר פרשה --</option>';
-            parshiot.forEach(p => parashaSelect.add(new Option(p, p)));
-
-            const perekLabel = document.createElement('label');
-            perekLabel.htmlFor = 'perek-select';
-            perekLabel.textContent = 'פרק:';
-            const perekSelect = document.createElement('select');
-            perekSelect.id = 'perek-select';
-            perekSelect.name = 'perek';
-
-            parashaSelect.addEventListener('change', () => updatePerekOptions(grade, parashaSelect, perekSelect));
-            
-            structuredOptionsContainer.appendChild(parashaLabel);
-            structuredOptionsContainer.appendChild(parashaSelect);
-            structuredOptionsContainer.appendChild(perekLabel);
-            structuredOptionsContainer.appendChild(perekSelect);
-            updatePerekOptions(grade, parashaSelect, perekSelect);
-        }
-        // לוגיקה למקצועות כלליים
-        else if (curriculum[subject] && curriculum[subject][grade]) {
-            const topics = curriculum[subject][grade];
-            const topicLabel = document.createElement('label');
-            topicLabel.htmlFor = 'topic-select';
-            topicLabel.textContent = 'נושא:';
-            const topicSelect = document.createElement('select');
-            topicSelect.id = 'topic-select';
-            topicSelect.name = 'topic';
-            topics.forEach(t => topicSelect.add(new Option(t, t)));
-            
-            structuredOptionsContainer.appendChild(topicLabel);
-            structuredOptionsContainer.appendChild(topicSelect);
-        }
-    }
-
-    function updatePerekOptions(grade, parashaSelect, perekSelect) {
+    function updatePerekOptions(grade, parashaSelect) {
+        const perekSelect = document.getElementById('perek-select');
+        if (!perekSelect) return;
         const selectedParasha = parashaSelect.value;
         perekSelect.innerHTML = ''; 
         if (selectedParasha && curriculum.torah[grade][selectedParasha]) {
@@ -138,7 +147,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         setTimeout(function() {
             resultsHeader.textContent = "✅ דף עבודה לדוגמה נוצר בהצלחה!";
-            outputDiv.innerHTML = `<div style="border: 1px solid #ddd; padding: 20px; background: #fff; border-radius: 5px;">התוכן האמיתי שייווצר על ידי הבינה המלאכותית יופיע כאן לאחר שהאתר יעלה לרשת ויתחבר לשרתים.</div>`;
+            outputDiv.innerHTML = `<div style="border: 1px solid #ddd; padding: 20px; background: #fff; border-radius: 5px;">התוכן האמיתי שייווצר על ידי הבינה המלאכותית יופיע כאן.</div>`;
         }, 1500);
     });
 
