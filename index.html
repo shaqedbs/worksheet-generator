@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מחולל דפי עבודה וירטואלי</title>
+    <link rel="stylesheet" href="styles.css"> 
+</head>
+<body>
+    <main>
+        <header>
+            <h1>מחולל דפי עבודה וירטואלי ✨</h1>
+        </header>
+        <form id="worksheet-generator-form">
+            <fieldset>
+                <legend>שלב 1: מסגרת כללית</legend>
+                <label for="grade-select">תחילה, בחרו כיתה:</label>
+                <select name="grade" id="grade-select">
+                    <option value="">-- יש לבחור --</option>
+                    <option value="a">כיתה א'</option>
+                    <option value="b">כיתה ב'</option>
+                    <option value="c">כיתה ג'</option>
+                    <option value="d">כיתה ד'</option>
+                    <option value="e">כיתה ה'</option>
+                    <option value="f">כיתה ו'</option>
+                </select>
+                <label for="subject-select">כעת, בחרו מקצוע:</label>
+                <select name="subject" id="subject-select">
+                    <option value="">-- יש לבחור --</option>
+                    <option value="torah">תורה</option>
+                    <option value="navi">נביא</option>
+                    <option value="math">חשבון</option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <legend>שלב 2: נושא השיעור</legend>
+                <label><input type="radio" name="topic_mode" value="structured" checked> בחירה לפי תוכנית הלימודים</label>
+                <label><input type="radio" name="topic_mode" value="custom"> הזנת נושא מותאם אישית</label>
+                <hr>
+                <div id="structured-options-container">
+                    <div id="torah-options" style="display: none;">
+                        <label for="parasha-select">פרשה:</label>
+                        <select name="parasha" id="parasha-select"></select>
+                        <label for="perek-select">פרק:</label>
+                        <select name="perek" id="perek-select"></select>
+                    </div>
+                    <div id="navi-options" style="display: none;">
+                        <label for="navi-book-select">ספר:</label>
+                        <select name="navi-book" id="navi-book-select"></select>
+                    </div>
+                </div>
+                <div id="custom-topic-section" style="display: none;">
+                    <label for="topic-input">כתבו את הנושא:</label>
+                    <input type="text" id="topic-input" placeholder="אנא בחרו מקצוע כדי לראות דוגמאות">
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>שלב 3: הגדרות תוכן ועיצוב</legend>
+                <label for="difficulty-select">רמת קושי:</label>
+                <select name="difficulty" id="difficulty-select">
+                    <option value="easy">קלה</option>
+                    <option value="medium">בינונית</option>
+                    <option value="hard">קשה</option>
+                </select>
+                <label for="questions-slider">מספר שאלות (3-30): <span id="questions-count">9</span></label>
+                <input type="range" id="questions-slider" name="questions" min="3" max="30" value="9">
+            </fieldset>
+            <button type="submit">🚀 צרו לי דף עבודה!</button>
+        </form>
+        <div id="results-area" style="display: none; margin-top: 20px; padding: 15px; border: 1px dashed #ccc; border-radius: 5px;">
+            <h2>⏳ מכין דף עבודה...</h2>
+            <div id="output"></div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
